@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic: The Gathering Stats Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    h1 {
+      color: #333;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .stat {
+      margin: 10px 0;
+      padding: 10px;
+      background: #e7e7e7;
+      border-radius: 4px;
+    }
+    .button {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      border: none;
+      border-radius: 4px;
+      background-color: #5cb85c;
+      color: white;
+      cursor: pointer;
+    }
+    .button.danger {
+      background-color: #d9534f;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>MTG Stats Tracker</h1>
+    <div class="stat">Wins: <span id="wins">0</span></div>
+    <div class="stat">Losses: <span id="losses">0</span></div>
+    <div class="stat">Winrate: <span id="winrate">0%</span></div>
+    <button class="button" id="add-win">Record Win</button>
+    <button class="button danger" id="add-loss">Record Loss</button>
+  </div>
+
+  <script>
+    let wins = 0;
+    let losses = 0;
+
+    document.getElementById('add-win').addEventListener('click', function() {
+      wins++;
+      updateStats();
+    });
+
+    document.getElementById('add-loss').addEventListener('click', function() {
+      losses++;
+      updateStats();
+    });
+
+    function updateStats() {
+      document.getElementById('wins').textContent = wins;
+      document.getElementById('losses').textContent = losses;
+      const winrate = wins + losses > 0 ? ((wins / (wins + losses)) * 100).toFixed(2) : 0;
+      document.getElementById('winrate').textContent = winrate + '%';
+    }
+  </script>
+</body>
+</html>
